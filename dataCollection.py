@@ -86,7 +86,6 @@ def main():
     # Setting other attributes
     batteryThreshold = 30
     nSamples = 100
-    digitalOutput = [1,1]
 
     # Connect to BITalino
     print "\nConnecting to BITalino using MAC Address: " + macAddress
@@ -128,6 +127,7 @@ def main():
     # Sample for baseline: 1 min
     start = time.time()
     end = time.time()
+    print "Sampling for baseline..."
     while(end - start) < 60:
         sample = device.read(nSamples)
         outputFile.write(matToString(sample))
@@ -138,8 +138,8 @@ def matToString(matrix):
     Returns a string of a matrix row by row, without brackets or commas
     """
     r, c = matrix.shape
+    string = ""
     for row in range(0,r):
-        string = ""
         for col in range(0,c):
             string = string + str(int(matrix[row,col])) + "\t"
         string += "\n"
