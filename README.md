@@ -12,8 +12,8 @@ This device connects to a BITalino device via Bluetooth, get readings for 1 min 
 ## Flags
 
 `-macAddress [MAC Address of the device]`
-If '-macAddress' is not set, default MAC Address 20:16:12:21:98:56 will be used.
 
+If '-macAddress' is not set, default MAC Address 20:16:12:21:98:56 will be used.
 
 `-channels [Comma seperated list of integers from 0 - 5, representing channels]`
 
@@ -30,5 +30,5 @@ Sampling Rate can be 1, 10, 100 or 1000 Hz.
 `--help (-h)`
 Show instructions.
 
-
+## Note
 **This python script has been tested on Ubuntu MATE on Raspberry Pi 3 Model B**
