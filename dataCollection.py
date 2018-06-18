@@ -120,7 +120,7 @@ def main():
     outputFile.write("# Date and time: " + time.strftime("%Y-%m-%d %H-%M-%S") + "\n")
     outputFile.write("# Monitored Channels: " + str(acqChannels) + "\n")
     outputFile.write("# Sampling Rate: " + str(samplingRate) + "\n")
-    outputFile.write("# End of header")
+    outputFile.write("# End of header\n")
 
     # Start Acquisition
     device.start(samplingRate, acqChannels)
@@ -130,8 +130,20 @@ def main():
     end = time.time()
     while(end - start) < 60:
         sample = device.read(nSamples)
-        
+        outputFile.write(matToString(sample))
         end = time.time()
+
+def matToString(matrix):
+    """
+    Returns a string of a matrix row by row, without brackets or commas
+    """
+    r, c = matrix.shape
+    for row in range(0,r):
+        string = ""
+        for col in range(0,c):
+            string = string + str(int(matrix[row,col])) + "\t"
+        string += "\n"
+    return string
 
 if __name__ == "__main__":
     main()
