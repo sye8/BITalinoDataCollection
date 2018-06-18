@@ -45,7 +45,8 @@ def main():
         acqChannels = [0, 1, 2, 3, 4, 5]
         samplingRate = 1000
     elif any(s in ["--help", "-h"] for s in sys.argv):
-        print "Run without flags to use default settings.\n"
+        print "\nThis script connects to a BITalino device via Bluetooth, get readings for 1 min for baseline, then plays a video and records the readings during the video."
+        print "\nRun without flags to use default settings.\n"
         print "Flags:\n"
         print "\t-macAddress [MAC Address of the device]"
         print "\t\t If '-macAddress' is not set, default MAC Address " + defaultMACAddress + " will be used.\n"
