@@ -8,15 +8,16 @@ Author
 Sifan Ye
 """
 
-import sys
 import os
 import platform
+import sys
 
 import re
+import time
 
 import numpy as np
 
-import time
+import cv2
 
 from bitalino import BITalino
 
@@ -133,6 +134,9 @@ def main():
         outputFile.write(matToString(sample))
         end = time.time()
     print "Finished sampling for baseline."
+
+    # Open Video
+    
 
 def matToString(matrix):
     """
