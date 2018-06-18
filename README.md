@@ -34,4 +34,4 @@ Run without flags to use default settings.
     Show instructions.
 
 ## Note
-**This python script has been tested on Ubuntu MATE on Raspberry Pi 3 Model B**
+**This python script has only been tested on Ubuntu MATE on Raspberry Pi 3 Model B**
