@@ -114,7 +114,7 @@ def main():
     # Write a header to output file
     outputFile.write("# This data is acquired using the BITalino Python API.\n")
     outputFile.write("# Note that this is not the same as the output from OpenSignals.\n")
-    outputFile.write("# Note that all data written in this file is RAW!\n")
+    outputFile.write("# Note that all data written in this file is RAW! (Please read 'RAW' like Gordon Ramsay)\n")
     outputFile.write("# Device MAC Address: " + macAddress + "\n")
     outputFile.write("# Date and time: " + time.strftime("%Y-%m-%d %H-%M-%S") + "\n")
     outputFile.write("# Monitored Channels: " + str(acqChannels) + "\n")
@@ -132,6 +132,7 @@ def main():
         sample = device.read(nSamples)
         outputFile.write(matToString(sample))
         end = time.time()
+    print "Finished sampling for baseline."
 
 def matToString(matrix):
     """
