@@ -11,18 +11,18 @@ This device connects to a BITalino device via Bluetooth, get readings for 1 min 
 
 ## Flags
 
-    ```-macAddress [MAC Address of the device]```
+    `-macAddress [MAC Address of the device]`
          If '-macAddress' is not set, default MAC Address 20:16:12:21:98:56 will be used.
 
-    ```-channels [Comma seperated list of integers from 0 - 5, representing channels]```
+    `-channels [Comma seperated list of integers from 0 - 5, representing channels]`
          If '-channels' is not set, all channels [0,1,2,3,4,5] will be monitored
          Example: 0,2,3 to monitor channels A1, A3, A4
 
-    ```-samplingRate [Sampling Rate in Hz]```
+    `-samplingRate [Sampling Rate in Hz]`
         If '-samplingRate' is not set, default sampling rate of 1000 Hz will be used.
         Sampling Rate can be 1, 10, 100 or 1000 Hz.
 
-     ```--help (-h)```
+     `--help (-h)`
          Show instructions.
 
 
