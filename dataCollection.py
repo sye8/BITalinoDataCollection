@@ -15,9 +15,9 @@ import sys
 import re
 import time
 
-import numpy as np
+import mpylayer
 
-import cv2
+import numpy as np
 
 from bitalino import BITalino
 
@@ -136,10 +136,11 @@ def main():
     print "Finished sampling for baseline."
 
     # Open Video
-    
+    playVideo('test2.mp4')
 
 def matToString(matrix):
     """
+    :param matrix: The matrix to be turned into string
     Returns a string of a matrix row by row, without brackets or commas
     """
     r, c = matrix.shape
@@ -149,6 +150,17 @@ def matToString(matrix):
             string = string + str(int(matrix[row,col])) + "\t"
         string += "\n"
     return string
+
+
+def playVideo(vidFilename):
+    """
+    :param vidFilename: The filename/location of the video to be played
+    Plays a video in a new window using
+    """
+    mp = mpylayer.MPlayerControl()
+
+    mp.loadfile(vidFilename)
+    time.sleep(10)
 
 if __name__ == "__main__":
     main()
