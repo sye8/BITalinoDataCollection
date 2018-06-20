@@ -11,11 +11,10 @@ Sifan Ye
 import os
 import platform
 import sys
+import subprocess
 
 import re
 import time
-
-import mpylayer
 
 import numpy as np
 
@@ -136,7 +135,7 @@ def main():
     print "Finished sampling for baseline."
 
     # Open Video
-    playVideo('test2.mp4')
+    print(playVideo('test.mp4'))
 
 def matToString(matrix):
     """
@@ -155,12 +154,10 @@ def matToString(matrix):
 def playVideo(vidFilename):
     """
     :param vidFilename: The filename/location of the video to be played
-    Plays a video in a new window using
+    Plays a video in a fullscreen using mplayer/vlc
     """
-    mp = mpylayer.MPlayerControl()
+    return subprocess.call(["mplayer","-fs",vidFilename])
 
-    mp.loadfile(vidFilename)
-    time.sleep(10)
 
 if __name__ == "__main__":
     main()
