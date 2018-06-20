@@ -12,10 +12,11 @@ This script connects to a BITalino device via Bluetooth, get readings for 1 min 
 * [pySerial](https://pypi.python.org/pypi/pyserial)
 * [pyBluez](https://pypi.python.org/pypi/PyBluez/)
 * [BitalinoAPI](https://github.com/BITalinoWorld/revolution-python-api) (When running, please place into the same folder as dataCollection.py)
+* [Mplayer](http://www.mplayerhq.hu)
 
 ### To install Dependencies:
 ```sh
-sudo apt-get install python python-dev python-pip bluez libbluetooth-dev
+sudo apt-get install python python-dev python-pip bluez libbluetooth-dev mplayer
 sudo pip install numpy pyserial pybluez bitalino
 git clone https://github.com/BITalinoWorld/revolution-python-api.git
 cd revolution-python-api
