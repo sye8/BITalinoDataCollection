@@ -50,21 +50,21 @@ def main():
         samplingRate = 1000
         vidPath = raw_input("Please type the path to the video here: \n")
     elif any(s in ["--help", "-h"] for s in sys.argv):
-        print "\nThis script connects to a BITalino device via Bluetooth, get readings for 1 min for baseline, then plays a video and records the readings during the video."
-        print "\nRun without flags to use default settings.\n"
-        print "Flags:\n"
-        print "\t-macAddress [MAC Address of the device]"
-        print "\t\t If '-macAddress' is not set, default MAC Address " + defaultMACAddress + " will be used.\n"
-        print "\t-channels [Comma seperated list of integers from 0 - 5, representing channels]"
-        print "\t\t If '-channels' is not set, all channels [0,1,2,3,4,5] will be monitored"
-        print "\t\t Example: 0,2,3 to monitor channels A1, A3, A4\n"
-        print "\t-samplingRate [Sampling Rate in Hz]"
-        print "\t\tIf '-samplingRate' is not set, default sampling rate of 1000 Hz will be used."
-        print "\t\tSampling Rate can be 1, 10, 100 or 1000 Hz.\n"
-        print "\t-video [Path to video file]\n"
-        print "\t\tIf '-video' flag is not set, the script will ask you for video during execution"
-        print "\t --help (-h)"
-        print "\t\t Show this screen.\n"
+        print("\nThis script connects to a BITalino device via Bluetooth, get readings for 1 min for baseline, then plays a video and records the readings during the video.")
+        print("\nRun without flags to use default settings.\n")
+        print("Flags:\n")
+        print("\t-macAddress [MAC Address of the device]")
+        print("\t\t If '-macAddress' is not set, default MAC Address " + defaultMACAddress + " will be used.\n")
+        print("\t-channels [Comma seperated list of integers from 0 - 5, representing channels]")
+        print("\t\t If '-channels' is not set, all channels [0,1,2,3,4,5] will be monitored")
+        print("\t\t Example: 0,2,3 to monitor channels A1, A3, A4\n")
+        print("\t-samplingRate [Sampling Rate in Hz]")
+        print("\t\tIf '-samplingRate' is not set, default sampling rate of 1000 Hz will be used.")
+        print("\t\tSampling Rate can be 1, 10, 100 or 1000 Hz.\n")
+        print("\t-video [Path to video file]")
+        print("\t\tIf '-video' flag is not set, the script will ask you for video during execution\n")
+        print("\t--help (-h)")
+        print("\t\t Show this screen.\n")
         exit()
     else:
         # -macAddress flag
