@@ -22,17 +22,21 @@ from bitalino import BITalino
 
 def main():
 
+    if platform.system() != 'Linux':
+        print("Sorry, this script currently can only run linux systems.")
+        print("Exiting...")
+        exit()
     # OS Specific Initializations
-    clearCmd = "cls||clear"
+    #clearCmd = "cls||clear"
 
-    if platform.system() == 'Windows':
-        clearCmd = "cls"
-        print "Using Windows default console size 80x24"
-        columns = 80
-        rows = 24
-    else:
-        clearCmd = "clear"
-        rows, columns = os.popen('stty size', 'r').read().split()
+    #if platform.system() == 'Windows':
+    #    clearCmd = "cls"
+    #    print "Using Windows default console size 80x24"
+    #    columns = 80
+    #    rows = 24
+    #else:
+    #    clearCmd = "clear"
+    #    rows, columns = os.popen('stty size', 'r').read().split()
 
     # Default MAC Address
     defaultMACAddress = "20:16:12:21:98:56"
@@ -136,8 +140,21 @@ def main():
 
     # Open Video and record data
     print("Play video and record data...")
-    playVideo('test.mp4', device, outputFile)
-
+    try:
+        vidProc = subprocess.Popen(["mplayer","-fs", "test.mp4"])
+        while(vidProc.poll() == None):
+            print("Recording...")
+            sample = device.read(nSamples)
+            outputFile.write(matToString(sample))
+    except OSError:
+        print("mplayer not found")
+        option = raw_input("Would you like to install mplayer? [Y/N]\n")
+        if(option == "Y"):
+            # Install mplayer using apt-get
+            print("Installing mplayer using apt-get. Will require password for sudo")
+            subprocess.call(["sudo", "apt-get", "install", "mplayer"])
+            print("Exiting...")
+            exit()
     print("Video finished.\n")
     print("Data has been saved in " + filename)
     print("Exiting...")
@@ -155,37 +172,6 @@ def matToString(matrix):
             string = string + str(int(matrix[row,col])) + "\t"
         string += "\n"
     return string
-
-
-def playVideo(vidFilename, bitDevice, output):
-    """
-    :param vidFilename: The filename/location of the video to be played
-    :param bitDevice: The device which will record the biometrics data
-    :param output: The file where the results will be recorded
-    Plays a video in a fullscreen using mplayer and records data during the video
-    Returns when video ends
-    """
-    if(platform.system() == 'Linux'):
-        try:
-            vidProc = subprocess.Popen(["mplayer","-fs", "test.mp4"])
-            while(vidProc.poll() == None):
-                print("Recording...")
-                sample = bitDevice.read(nSamples)
-                output.write(matToString(sample))
-            return
-        except OSError:
-            print("mplayer not found")
-            option = raw_input("Would you like to install mplayer? [Y/N]\n")
-            if(option == "Y"):
-                # Install mplayer using apt-get
-                print("Installing mplayer using apt-get. Will require password for sudo")
-                subprocess.call(["sudo", "apt-get", "install", "mplayer"])
-                print("Exiting...")
-                exit()
-    else:
-        print("Sorry this script currently only supports Linux systems.")
-        print("Exiting...")
-        exit()
 
 
 if __name__ == "__main__":
