@@ -126,7 +126,7 @@ def main():
 
     # Write a header to output file
     outputFile.write("# This data is acquired using the BITalino Python API.\n")
-    outputFile.write("# The script that recorded this data is written by Sifan Ye.")
+    outputFile.write("# The script that recorded this data is written by Sifan Ye.\n")
     outputFile.write("# Note that this is not the same as the output from OpenSignals.\n")
     outputFile.write("# Note that all data written in this file is RAW! (Read 'RAW' like Gordon Ramsay)\n")
     outputFile.write("# Device MAC Address: " + macAddress + "\n")
