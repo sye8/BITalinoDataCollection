@@ -8,7 +8,7 @@ This script connects to a BITalino device via Bluetooth, get readings for 1 min 
 * [NumPy](https://pypi.python.org/pypi/numpy)
 * [pySerial](https://pypi.python.org/pypi/pyserial)
 * [pyBluez](https://pypi.python.org/pypi/PyBluez/) (You would also need to install BlueZ and libbluetooth-dev. Both can be installed using `apt-get`)
-* [BitalinoAPI](https://github.com/BITalinoWorld/revolution-python-api) (When running, please place into the same folder as game.py)
+* [BitalinoAPI](https://github.com/BITalinoWorld/revolution-python-api) (When running, please place into the same folder as dataCollection.py)
 
 ## Flags
 
