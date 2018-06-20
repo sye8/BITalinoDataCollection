@@ -56,5 +56,5 @@ Run without flags to use default settings.
 
     Show instructions.
 
-## Note
+## Compatibility Note
 **This python script has only been tested on Ubuntu MATE on Raspberry Pi 3 Model B**
