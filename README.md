@@ -46,6 +46,10 @@ Run without flags to use default settings.
  
     Sampling Rate can be 1, 10, 100 or 1000 Hz.
 
+* `-video [Path to video file]`
+
+    If '-video' flag is not set, the script will ask you for video during execution
+
 * `--help (-h)`
 
     Show instructions.
