@@ -136,7 +136,7 @@ def main():
 
     # Open Video and record data
     print("Play video and record data...")
-    playVideo('test.mp4')
+    playVideo('test.mp4', device, outputFile)
 
     print("Video finished.\n")
     print("Data has been saved in " + filename)
@@ -157,18 +157,22 @@ def matToString(matrix):
     return string
 
 
-def playVideo(vidFilename):
+def playVideo(vidFilename, bitDevice, output):
     """
     :param vidFilename: The filename/location of the video to be played
+    :param bitDevice: The device which will record the biometrics data
+    :param output: The file where the results will be recorded
     Plays a video in a fullscreen using mplayer and records data during the video
-    Exits when video ends
+    Returns when video ends
     """
     if(platform.system() == 'Linux'):
         try:
             vidProc = subprocess.Popen(["mplayer","-fs", "test.mp4"])
             while(vidProc.poll() == None):
-                sample = device.read(nSamples)
-                outputFile.write(matToString(sample))
+                print("Recording...")
+                sample = bitDevice.read(nSamples)
+                output.write(matToString(sample))
+            return
         except OSError:
             print("mplayer not found")
             option = raw_input("Would you like to install mplayer? [Y/N]\n")
