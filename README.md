@@ -4,11 +4,25 @@ This script connects to a BITalino device via Bluetooth, get readings for 1 min 
 
 ## Dependencies
 * [Python >2.7](https://www.python.org/downloads/) or [Anaconda](https://www.continuum.io/downloads)
-* Python-Dev `sudo apt-get install python-dev`
 * [NumPy](https://pypi.python.org/pypi/numpy)
 * [pySerial](https://pypi.python.org/pypi/pyserial)
-* [pyBluez](https://pypi.python.org/pypi/PyBluez/) (You would also need to install **BlueZ** and **libbluetooth-dev**. Both can be installed using `apt-get`)
+* [pyBluez](https://pypi.python.org/pypi/PyBluez/)
 * [BitalinoAPI](https://github.com/BITalinoWorld/revolution-python-api) (When running, please place into the same folder as dataCollection.py)
+
+### To install Dependencies:
+```shell
+sudo apt-get install python python-dev python-pip bluez libbluetooth-dev
+sudo pip install numpy pyserial pybluez bitalino
+git clone https://github.com/BITalinoWorld/revolution-python-api.git
+cd revolution-python-api
+sudo python setup.py install
+```
+*(For pip2.7) Note that if your pip complains about `no module named _internal` or `no module named internal`:*
+
+```shell
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+sudo python get-pip.py --force-reinstall
+```
 
 ## Flags
 
