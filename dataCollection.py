@@ -31,7 +31,7 @@ def main():
 
     #if platform.system() == 'Windows':
     #    clearCmd = "cls"
-    #    print "Using Windows default console size 80x24"
+    #    print("Using Windows default console size 80x24")
     #    columns = 80
     #    rows = 24
     #else:
@@ -43,8 +43,8 @@ def main():
 
     # Parsing Arguments
     if len(sys.argv) == 1:
-        print "Run with flag '--help' or '-h' for instructions."
-        print "Now using default settings.\n"
+        print("Run with flag '--help' or '-h' for instructions.")
+        print("Now using default settings.\n")
         macAddress = defaultMACAddress
         acqChannels = [0, 1, 2, 3, 4, 5]
         samplingRate = 1000
@@ -73,7 +73,7 @@ def main():
             macAddress = sys.argv[i+1]
         except:
             macAddress = defaultMACAddress
-            print "No MAC Address set, using default MAC Address: " + macAddress
+            print("No MAC Address set, using default MAC Address: " + macAddress)
         # -channels flag
         try:
             i = sys.argv.index("-channels")
@@ -81,14 +81,14 @@ def main():
             acqChannels = map(int, channels.split(','))
         except:
             acqChannels = [0, 1, 2, 3, 4, 5]
-            print "No channels set, monitoring all channels."
+            print("No channels set, monitoring all channels.")
         # -samplingRate flag
         try:
             i = sys.argv.index("-samplingRate")
             samplingRate = int(sys.argv[i+1])
         except:
             samplingRate = 1000
-            print "No sampling rate set, using default sampling rate of 1000 Hz."
+            print("No sampling rate set, using default sampling rate of 1000 Hz.")
         # -video flag
         try:
             i = sys.argv.index("-video")
@@ -101,27 +101,27 @@ def main():
     nSamples = 100
 
     # Connect to BITalino
-    print "\nConnecting to BITalino using MAC Address: " + macAddress
+    print("\nConnecting to BITalino using MAC Address: " + macAddress)
     device = BITalino(macAddress)
-    print "\nDevice Connected.\n"
+    print("\nDevice Connected.\n")
 
     # Set battery threshold
     device.battery(batteryThreshold)
 
     # Read BITalino version
-    print "Device Version:", device.version()
+    print("Device Version:", device.version())
 
     # Show channels monitored
-    print "Monitoring channels: " + str(acqChannels)
+    print("Monitoring channels: " + str(acqChannels))
 
     # Show sampling rate
-    print "Sampling Rate: " + str(samplingRate) + " Hz."
+    print("Sampling Rate: " + str(samplingRate) + " Hz.")
 
     # Create Output file
     filename = raw_input("\nHow shall we call your output file?\nInputting an empty string here to use the default filename\n")
     if(filename == ""):
         filename = "PyBitSignals_" + re.sub(':', '', macAddress) + "_" + time.strftime("%Y-%m-%d_%H-%M-%S") + ".txt"
-        print "Using default filename:\n", filename
+        print("Using default filename:\n" + filename)
     outputFile = open(filename, "w")
 
     # Write a header to output file
@@ -141,19 +141,18 @@ def main():
     # Sample for baseline: 1 min
     start = time.time()
     end = time.time()
-    print "Sampling for baseline..."
+    print("Sampling for baseline...")
     while(end - start) < 60:
         sample = device.read(nSamples)
         outputFile.write(matToString(sample))
         end = time.time()
-    print "Finished sampling for baseline."
+    print("Finished sampling for baseline.")
 
     # Open Video and record data
     print("Play video and record data...")
     try:
         vidProc = subprocess.Popen(["mplayer","-fs", vidPath])
         while(vidProc.poll() == None):
-            print("Recording...")
             sample = device.read(nSamples)
             outputFile.write(matToString(sample))
     except OSError:
