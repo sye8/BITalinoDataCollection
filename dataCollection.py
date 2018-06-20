@@ -48,6 +48,7 @@ def main():
         macAddress = defaultMACAddress
         acqChannels = [0, 1, 2, 3, 4, 5]
         samplingRate = 1000
+        vidPath = raw_input("Please type the path to the video here: \n")
     elif any(s in ["--help", "-h"] for s in sys.argv):
         print "\nThis script connects to a BITalino device via Bluetooth, get readings for 1 min for baseline, then plays a video and records the readings during the video."
         print "\nRun without flags to use default settings.\n"
@@ -60,6 +61,8 @@ def main():
         print "\t-samplingRate [Sampling Rate in Hz]"
         print "\t\tIf '-samplingRate' is not set, default sampling rate of 1000 Hz will be used."
         print "\t\tSampling Rate can be 1, 10, 100 or 1000 Hz.\n"
+        print "\t-video [Path to video file]\n"
+        print "\t\tIf '-video' flag is not set, the script will ask you for video during execution"
         print "\t --help (-h)"
         print "\t\t Show this screen.\n"
         exit()
@@ -79,13 +82,19 @@ def main():
         except:
             acqChannels = [0, 1, 2, 3, 4, 5]
             print "No channels set, monitoring all channels."
-        # -samplingRate
+        # -samplingRate flag
         try:
             i = sys.argv.index("-samplingRate")
             samplingRate = int(sys.argv[i+1])
         except:
             samplingRate = 1000
             print "No sampling rate set, using default sampling rate of 1000 Hz."
+        # -video flag
+        try:
+            i = sys.argv.index("-video")
+            vidPath = sys.argv[i+1]
+        except:
+            vidPath = raw_input("Please type the path to the video here: \n")
 
     # Setting other attributes
     batteryThreshold = 30
@@ -117,8 +126,9 @@ def main():
 
     # Write a header to output file
     outputFile.write("# This data is acquired using the BITalino Python API.\n")
+    outputFile.write("# The script that recorded this data is written by Sifan Ye.")
     outputFile.write("# Note that this is not the same as the output from OpenSignals.\n")
-    outputFile.write("# Note that all data written in this file is RAW! (Please read 'RAW' like Gordon Ramsay)\n")
+    outputFile.write("# Note that all data written in this file is RAW! (Read 'RAW' like Gordon Ramsay)\n")
     outputFile.write("# Device MAC Address: " + macAddress + "\n")
     outputFile.write("# Date and time: " + time.strftime("%Y-%m-%d %H-%M-%S") + "\n")
     outputFile.write("# Monitored Channels: " + str(acqChannels) + "\n")
@@ -141,7 +151,7 @@ def main():
     # Open Video and record data
     print("Play video and record data...")
     try:
-        vidProc = subprocess.Popen(["mplayer","-fs", "test.mp4"])
+        vidProc = subprocess.Popen(["mplayer","-fs", vidPath])
         while(vidProc.poll() == None):
             print("Recording...")
             sample = device.read(nSamples)
