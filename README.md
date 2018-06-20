@@ -2,7 +2,7 @@
 
 This script connects to a BITalino device via Bluetooth, get readings for 1 min for baseline, then plays a video and records the readings during the video.
 
-*Note that this script currently only has support Linux systems support*
+*Note that this script currently can only be run on Linux systems*
 
 ## Dependencies
 * [Python >2.7](https://www.python.org/downloads/) or [Anaconda](https://www.continuum.io/downloads)
