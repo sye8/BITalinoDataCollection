@@ -4,6 +4,7 @@ This script connects to a BITalino device via Bluetooth, get readings for 1 min 
 
 ## Dependencies
 * [Python >2.7](https://www.python.org/downloads/) or [Anaconda](https://www.continuum.io/downloads)
+* Python-Dev `sudo apt-get install python-dev`
 * [NumPy](https://pypi.python.org/pypi/numpy)
 * [pySerial](https://pypi.python.org/pypi/pyserial)
 * [pyBluez](https://pypi.python.org/pypi/PyBluez/)
