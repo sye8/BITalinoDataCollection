@@ -1,4 +1,4 @@
-# BITalinoDataCollection (Work In Progress)
+# BITalinoDataCollection
 
 This script connects to a BITalino device via Bluetooth, get readings for 1 min for baseline, then plays a video and records the readings during the video.
 
