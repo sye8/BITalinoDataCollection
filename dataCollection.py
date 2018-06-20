@@ -134,8 +134,13 @@ def main():
         end = time.time()
     print "Finished sampling for baseline."
 
-    # Open Video
-    print(playVideo('test.mp4'))
+    # Open Video and record data
+    print("Play video and record data...")
+    playVideo('test.mp4')
+
+    print("Video finished.\n")
+    print("Data has been saved in " + filename)
+    print("Exiting...")
 
 
 def matToString(matrix):
@@ -155,12 +160,15 @@ def matToString(matrix):
 def playVideo(vidFilename):
     """
     :param vidFilename: The filename/location of the video to be played
-    Plays a video in a fullscreen using mplayer
-    Returns the exit code of the command
+    Plays a video in a fullscreen using mplayer and records data during the video
+    Exits when video ends
     """
     if(platform.system() == 'Linux'):
         try:
-            return subprocess.Popen(["mpylayer","-fs", "test.mp4"])
+            vidProc = subprocess.Popen(["mplayer","-fs", "test.mp4"])
+            while(vidProc.poll() == None):
+                sample = device.read(nSamples)
+                outputFile.write(matToString(sample))
         except OSError:
             print("mplayer not found")
             option = raw_input("Would you like to install mplayer? [Y/N]\n")
