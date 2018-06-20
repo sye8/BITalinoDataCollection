@@ -155,24 +155,19 @@ def matToString(matrix):
 def playVideo(vidFilename):
     """
     :param vidFilename: The filename/location of the video to be played
-    Plays a video in a fullscreen using mplayer/vlc
+    Plays a video in a fullscreen using mplayer
     Returns the exit code of the command
     """
     if(platform.system() == 'Linux'):
         try:
-            return subprocess.call(["mplayer","-fs", "test.mp4"])
+            return subprocess.Popen(["mpylayer","-fs", "test.mp4"])
         except OSError:
             print("mplayer not found")
-            try:
-                print("Trying with VLC Player")
-                return subprocess.call(["vlc", "-f", "test.mp4"])
-            except OSError:
-                print("VLC Player not found")
-                option = raw_input("Would you like to install mplayer? [Y/N]\n")
-                if(option == "Y"):
-                    # Install mplayer using apt-get
-                    print("Installing mplayer using apt-get. Will require password for sudo")
-                    subprocess.call(["sudo", "apt-get", "install", "mplayer"])
+            option = raw_input("Would you like to install mplayer? [Y/N]\n")
+            if(option == "Y"):
+                # Install mplayer using apt-get
+                print("Installing mplayer using apt-get. Will require password for sudo")
+                subprocess.call(["sudo", "apt-get", "install", "mplayer"])
                 print("Exiting...")
                 exit()
     else:
