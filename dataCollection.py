@@ -119,7 +119,8 @@ def main():
     print("Sampling Rate: " + str(samplingRate) + " Hz.")
 
     # Create Output file
-    filename = raw_input("\nHow shall we call your output file?\nInputting an empty string here to use the default filename\n")
+    print("\nHow shall we call your output file?\nInputting an empty string here to use the default filename")
+    filename = sys.stdin.readline()
     if(filename == ""):
         filename = "PyBitSignals_" + re.sub(':', '', macAddress) + "_" + time.strftime("%Y-%m-%d_%H-%M-%S") + ".txt"
         print("Using default filename:\n" + filename)
