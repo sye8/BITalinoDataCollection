@@ -49,7 +49,7 @@ def main():
         acqChannels = [0, 1, 2, 3, 4, 5]
         samplingRate = 1000
         print("Please type the path to the video here:")
-        vidPath = sys.stdin.readline()
+        vidPath = sys.stdin.readline().rstrip()
     elif any(s in ["--help", "-h"] for s in sys.argv):
         print("\nThis script connects to a BITalino device via Bluetooth, get readings for 1 min for baseline, then plays a video and records the readings during the video.")
         print("\nRun without flags to use default settings.\n")
@@ -96,7 +96,7 @@ def main():
             vidPath = sys.argv[i+1]
         except:
             print("Please type the path to the video here:")
-            vidPath = sys.stdin.readline()
+            vidPath = sys.stdin.readline().rstrip()
 
     # Setting other attributes
     batteryThreshold = 30
@@ -121,7 +121,7 @@ def main():
 
     # Create Output file
     print("\nHow shall we call your output file?\nInputting an empty string here to use the default filename")
-    filename = sys.stdin.readline()
+    filename = sys.stdin.readline().rstrip()
     if(filename == ""):
         filename = "PyBitSignals_" + re.sub(':', '', macAddress) + "_" + time.strftime("%Y-%m-%d_%H-%M-%S") + ".txt"
         print("Using default filename:\n" + filename)
@@ -161,7 +161,7 @@ def main():
     except OSError:
         print("mplayer not found")
         print("Would you like to install mplayer? [Y/N]")
-        option = sys.stdin.readline()      
+        option = sys.stdin.readline().rstrip()   
         if(option == "Y"):
             # Install mplayer using apt-get
             print("Installing mplayer using apt-get. Will require password for sudo")
