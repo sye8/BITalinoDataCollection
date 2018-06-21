@@ -174,7 +174,7 @@ def main():
     except OSError:
         print("mplayer not found")
         print("Would you like to install mplayer? [Y/N]")
-        option = sys.stdin.readline().rstrip()   
+        option = sys.stdin.readline().rstrip()
         if(option == "Y"):
             # Install mplayer using apt-get
             print("Installing mplayer using apt-get. Will require password for sudo")
@@ -198,7 +198,7 @@ def matToString(matrix):
         string += "\t"
         string += str(time.ctime(time.time()))
         string += "\t"
-        for col in range(0,c):
+        for col in range(1,c):
             string = string + str(int(matrix[row,col])) + "\t"
         string += "\n"
     return string
