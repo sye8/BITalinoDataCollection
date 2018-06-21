@@ -166,7 +166,7 @@ def main():
             exit()
     print("Video finished.\n")
     print("Data has been saved in " + filename)
-    print("Exiting...")
+    print("Done")
 
 
 def matToString(matrix):
