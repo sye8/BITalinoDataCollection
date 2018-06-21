@@ -70,7 +70,7 @@ def main():
         print("\t\tIf '-video' flag is not set, the script will ask you for video during execution\n")
         print("\t--output (-o)")
         print("\t\tSets the output filename")
-        print("\t\tIf '--output' flag is not set, default output filename 'PyBitSignals_<MAC Address>_<date>_<time>' will be used")
+        print("\t\tIf '--output' flag is not set, default output filename 'PyBitSignals_<MAC Address>_<date>_<time>' will be used\n")
         print("\t--help (-h)")
         print("\t\tShow this screen.\n")
         exit()
