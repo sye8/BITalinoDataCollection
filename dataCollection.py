@@ -95,7 +95,8 @@ def main():
             i = sys.argv.index("-video")
             vidPath = sys.argv[i+1]
         except:
-            vidPath = raw_input("Please type the path to the video here: \n")
+            print("Please type the path to the video here:")
+            vidPath = sys.stdin.readline()
 
     # Setting other attributes
     batteryThreshold = 30
@@ -159,7 +160,8 @@ def main():
             outputFile.write(matToString(sample))
     except OSError:
         print("mplayer not found")
-        option = raw_input("Would you like to install mplayer? [Y/N]\n")
+        print("Would you like to install mplayer? [Y/N]")
+        option = sys.stdin.readline()      
         if(option == "Y"):
             # Install mplayer using apt-get
             print("Installing mplayer using apt-get. Will require password for sudo")
