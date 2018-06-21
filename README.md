@@ -38,7 +38,7 @@ sudo apt-get install python3 python3-dev python3-pip bluez libbluetooth-dev mpla
 sudo pip3 install numpy pyserial pybluez bitalino
 ```
 
-Note here we are not cloning the official git repo since we are using their old API for Python 3 support, which I have included in this repo (Thanks to [Gautam Sawala](https://github.com/gautamsawala) for this suggestion)
+**Note here we are not cloning the official git repo since we are using their old API for Python 3 support, which I have included in this repo (Thanks to [Gautam Sawala](https://github.com/gautamsawala) for this suggestion)**
 
 ## Flags
 
