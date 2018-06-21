@@ -194,6 +194,10 @@ def matToString(matrix):
     r, c = matrix.shape
     string = ""
     for row in range(0,r):
+        string += str(time.time())
+        string += "\t"
+        string += str(time.ctime(time.time()))
+        string += "\t"
         for col in range(0,c):
             string = string + str(int(matrix[row,col])) + "\t"
         string += "\n"
