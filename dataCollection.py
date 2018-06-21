@@ -68,8 +68,11 @@ def main():
         print("\t\tSampling Rate can be 1, 10, 100 or 1000 Hz.\n")
         print("\t-video [Path to video file]")
         print("\t\tIf '-video' flag is not set, the script will ask you for video during execution\n")
+        print("\t--output (-o)")
+        print("\t\tSets the output filename")
+        print("\t\tIf '--output' flag is not set, default output filename 'PyBitSignals_<MAC Address>_<date>_<time>' will be used")
         print("\t--help (-h)")
-        print("\t\t Show this screen.\n")
+        print("\t\tShow this screen.\n")
         exit()
     else:
         # -macAddress flag
@@ -101,6 +104,17 @@ def main():
         except:
             print("Please type the path to the video here:")
             vidPath = sys.stdin.readline().rstrip()
+        # --output flag
+        try:
+            i = sys.argv.index("--output")
+            filename = sys.argv[i+1]
+        except:
+            try:
+                i = sys.argv.index("-o")
+                filename = sys.argv[i+1]
+            except:
+                filename = "PyBitSignals_" + re.sub(':', '', macAddress) + "_" + time.strftime("%Y-%m-%d_%H-%M-%S") + ".txt"
+                print("Using default filename:\n" + filename)
 
     # Setting other attributes
     batteryThreshold = 30
@@ -115,7 +129,7 @@ def main():
     device.battery(batteryThreshold)
 
     # Read BITalino version
-    print("Device Version:", device.version())
+    print("Device Version: " + str(device.version()))
 
     # Show channels monitored
     print("Monitoring channels: " + str(acqChannels))
@@ -124,11 +138,6 @@ def main():
     print("Sampling Rate: " + str(samplingRate) + " Hz.")
 
     # Create Output file
-    print("\nHow shall we call your output file?\nInputting an empty string here to use the default filename")
-    filename = sys.stdin.readline().rstrip()
-    if(filename == ""):
-        filename = "PyBitSignals_" + re.sub(':', '', macAddress) + "_" + time.strftime("%Y-%m-%d_%H-%M-%S") + ".txt"
-        print("Using default filename:\n" + filename)
     outputFile = open(filename, "w")
 
     # Write a header to output file
