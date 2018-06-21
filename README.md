@@ -15,6 +15,9 @@ This script connects to a BITalino device via Bluetooth, get readings for 1 min 
 * [Mplayer](http://www.mplayerhq.hu)
 
 ### To install Dependencies:
+
+**For Python 2.7**
+
 ```sh
 sudo apt-get install python python-dev python-pip bluez libbluetooth-dev mplayer
 sudo pip install numpy pyserial pybluez bitalino
@@ -27,6 +30,15 @@ sudo python setup.py install
 ```sh
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 sudo python get-pip.py --force-reinstall
+```
+
+**For Python 3**
+```sh
+sudo apt-get install python3 python3-dev python3-pip bluez libbluetooth-dev mplayer
+sudo pip3 install numpy pyserial pybluez bitalino
+git clone https://github.com/BITalinoWorld/revolution-python-api.git
+cd revolution-python-api
+sudo python3 setup.py install
 ```
 
 ## Flags
