@@ -48,7 +48,8 @@ def main():
         macAddress = defaultMACAddress
         acqChannels = [0, 1, 2, 3, 4, 5]
         samplingRate = 1000
-        vidPath = raw_input("Please type the path to the video here: \n")
+        print("Please type the path to the video here:")
+        vidPath = sys.stdin.readline()
     elif any(s in ["--help", "-h"] for s in sys.argv):
         print("\nThis script connects to a BITalino device via Bluetooth, get readings for 1 min for baseline, then plays a video and records the readings during the video.")
         print("\nRun without flags to use default settings.\n")
