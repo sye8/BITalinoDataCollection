@@ -190,6 +190,11 @@ def matToString(matrix):
     """
     :param matrix: The matrix to be turned into string
     Returns a string of a matrix row by row, without brackets or commas
+    Columns from left to right are respectively:
+    - Time stamp in UNIX time
+    - Time stamp in local time
+    - Digital 0 - 3
+    - Monitored Analog Channels
     """
     r, c = matrix.shape
     string = ""
