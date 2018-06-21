@@ -2,3 +2,4 @@
 PyBitSignals*.txt
 *.mp4
 
+/_pycache_/*

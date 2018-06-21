@@ -18,7 +18,10 @@ import time
 
 import numpy as np
 
-from bitalino import BITalino
+if sys.version_info[0] < 3:
+    from bitalino import BITalino
+else:
+    from bitalino3X import BITalino
 
 def main():
 
