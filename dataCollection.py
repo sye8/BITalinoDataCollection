@@ -21,6 +21,7 @@ import numpy as np
 if sys.version_info[0] < 3:
     from bitalino import BITalino
 else:
+    print("Python Version 3: Using bitalino3X.py")
     from bitalino3X import BITalino
 
 def main():
