@@ -70,7 +70,7 @@ Run without flags to use default settings.
 
    Sets the output filename
 	
-   If '--output' flag is not set, default output filename 'PyBitSignals_(MAC Address)_(date)_(time)' will be used
+   If '--output' flag is not set, default output filename 'PyBitSignals_(MAC Address)\_(date)_(time)' will be used
 
 * `--help (-h)`
 
