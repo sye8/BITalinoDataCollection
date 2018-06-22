@@ -58,7 +58,6 @@ for i in range(len(devices)) :
 
 # Sampling for baseline
 print("The data collected will be stored in PyBitSignals_<MAC Address>_<date>_<time>.txt")
-print("Sampling for baseline...")
 outputFiles = []
 processes = []
 # Initialize output files, setup processes

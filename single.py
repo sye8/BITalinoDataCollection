@@ -131,7 +131,6 @@ print("Sampling Rate: " + str(samplingRate) + " Hz.")
 device.start(samplingRate, acqChannels)
 
 # Sample for baseline: 1 min
-print("Sampling for baseline...")
 outputFile = dc.initOutput(filename, macAddress, acqChannels, samplingRate)
 dc.writeOutTimed(outputFile, device, acqChannels, samplingRate, 60)
 
