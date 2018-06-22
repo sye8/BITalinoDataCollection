@@ -43,6 +43,8 @@ def initOutput(filename, macAddress, acqChannels, samplingRate):
     file.write("# Sampling Rate: " + str(samplingRate) + "\n")
     file.write("# End of header\n")
     
+    file.flush()
+
     return file
 
 
@@ -63,6 +65,7 @@ def writeOutTimed(file, device, acqChannels, samplingRate, t):
         sample = device.read(100)
         file.write(matToString(sample))
         end = time.time()
+    file.flush()
     print("Finished.")
 
 

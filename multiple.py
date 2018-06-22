@@ -63,8 +63,9 @@ processes = []
 # Initialize output files, setup processes
 for i in range(len(devices)) :
     filename = "PyBitSignals_" + re.sub(':', '', macAddresses[i]) + "_" + time.strftime("%Y-%m-%d_%H-%M-%S") + ".txt"
-    outputFiles.append(dc.initOutput(filename, macAddresses[i], acqChannels, samplingRate))
-    processes.append(multiprocessing.Process(target=dc.writeOutTimed, args=(outputFiles[i], devices[i], acqChannels, samplingRate, 60)))
+    outputFile = dc.initOutput(filename, macAddresses[i], acqChannels, samplingRate)
+    outputFiles.append(outputFile)
+    processes.append(multiprocessing.Process(target=dc.writeOutTimed, args=(outputFile, devices[i], acqChannels, samplingRate, 60)))
 
 # Start baseline sampling for each device
 for p in processes:
