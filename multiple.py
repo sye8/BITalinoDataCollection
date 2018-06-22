@@ -71,4 +71,6 @@ for i in range(len(devices)) :
 for p in processes:
     p.start()
 
-
+# Exit the completed processes
+for p in processes:
+    p.join()
