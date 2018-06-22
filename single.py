@@ -139,6 +139,7 @@ dc.writeOutTimed(outputFile, device, acqChannels, samplingRate, 60)
 print("Play video and record data...")
 try:
     vidProc = subprocess.Popen(["mplayer","-fs", vidPath])
+    vidStartTime = time.time()
     while(vidProc.poll() == None):
         sample = device.read(100)
         outputFile.write(dc.matToString(sample))
@@ -153,6 +154,7 @@ except OSError:
         print("Exiting...")
         exit()
 print("Video finished.\n")
+print("Video started at " + vidStartTime + " or in human language: " + time.ctime(vidStartTime))
 print("Data has been saved in " + filename)
 print("Done")
 
