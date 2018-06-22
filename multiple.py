@@ -57,5 +57,10 @@ for i in range(len(devices)) :
     devices[i].start(samplingRate, acqChannels)
 
 # Sampling for baseline
+print("The data collected will be stored in PyBitSignals_<MAC Address>_<date>_<time>.txt")
 print("Sampling for baseline...")
+outputFiles = []
+for(i in range(len(devices))):
+    filename = "PyBitSignals_" + re.sub(':', '', macAddress) + "_" + time.strftime("%Y-%m-%d_%H-%M-%S") + ".txt"
+    outputFiles.append(dc.initOutput(filename, macAddresses[i], acqChannels, samplingRate))
 
