@@ -125,7 +125,7 @@ print("Device Version: " + str(device.version()))
 print("Monitoring channels: " + str(acqChannels))
 
 # Show sampling rate
-print("Sampling Rate: " + str(samplingRate) + " Hz.")
+print("Sampling Rate: " + str(samplingRate) + " Hz.\n")
 
 # Start Acquisition
 device.start(samplingRate, acqChannels)
