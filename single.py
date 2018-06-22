@@ -153,7 +153,7 @@ except OSError:
         print("Exiting...")
         exit()
 print("Video finished.\n")
-print("Video started at " + vidStartTime + " or in human language: " + time.ctime(vidStartTime))
+print("Video started at " + str(vidStartTime) + " or in human language: " + str(time.ctime(vidStartTime)))
 print("Data has been saved in " + filename)
 print("Done")
 
