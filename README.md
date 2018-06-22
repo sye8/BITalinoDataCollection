@@ -58,7 +58,7 @@ Run without flags to use default settings.
 
 * `-samplingRate [Sampling Rate in Hz]`
 
-    If '-samplingRate' is not set, default sampling rate of 1000 Hz will be used.
+    If '-samplingRate' is not set, default sampling rate of 100 Hz will be used.
  
     Sampling Rate can be 1, 10, 100 or 1000 Hz.
 

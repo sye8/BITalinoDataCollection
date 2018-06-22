@@ -42,7 +42,7 @@ if len(sys.argv) == 1:
     print("Now using default settings.\n")
     macAddress = defaultMACAddress
     acqChannels = [0, 1, 2, 3, 4, 5]
-    samplingRate = 1000
+    samplingRate = 100
     print("Please type the path to the video here:")
     vidPath = sys.stdin.readline().rstrip()
 elif any(s in ["--help", "-h"] for s in sys.argv):
@@ -55,8 +55,8 @@ elif any(s in ["--help", "-h"] for s in sys.argv):
     print("\t\t If '-channels' is not set, all channels [0,1,2,3,4,5] will be monitored")
     print("\t\t Example: 0,2,3 to monitor channels A1, A3, A4\n")
     print("\t-samplingRate [Sampling Rate in Hz]")
-    print("\t\tIf '-samplingRate' is not set, default sampling rate of 1000 Hz will be used.")
-    print("\t\tSampling Rate can be 1, 10, 100 or 1000 Hz.\n")
+    print("\t\tIf '-samplingRate' is not set, default sampling rate of 100 Hz will be used.")
+    print("\t\tSampling Rate can be 1, 10, 100 or 100 Hz.\n")
     print("\t-video [Path to video file]")
     print("\t\tIf '-video' flag is not set, the script will ask you for video during execution\n")
     print("\t--output (-o)")
@@ -86,8 +86,8 @@ else:
         i = sys.argv.index("-samplingRate")
         samplingRate = int(sys.argv[i+1])
     except:
-        samplingRate = 1000
-        print("No sampling rate set, using default sampling rate of 1000 Hz.")
+        samplingRate = 100
+        print("No sampling rate set, using default sampling rate of 100 Hz.")
     # -video flag
     try:
         i = sys.argv.index("-video")
