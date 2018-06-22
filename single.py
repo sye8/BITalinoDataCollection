@@ -141,7 +141,7 @@ try:
     vidProc = subprocess.Popen(["mplayer","-fs", vidPath])
     while(vidProc.poll() == None):
         sample = device.read(100)
-        outputFile.write(matToString(sample))
+        outputFile.write(dc.matToString(sample))
 except OSError:
     print("mplayer not found")
     print("Would you like to install mplayer? [Y/N]")
