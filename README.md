@@ -65,6 +65,12 @@ Run without flags to use default settings.
 * `-video [Path to video file]`
 
     If '-video' flag is not set, the script will ask you for video during execution
+    
+* `--output (-o)`
+
+   Sets the output filename
+	
+   If '--output' flag is not set, default output filename 'PyBitSignals_<MAC Address>_<date>_<time>' will be used
 
 * `--help (-h)`
 
