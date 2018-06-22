@@ -53,7 +53,7 @@ for addr in macAddresses :
 # Initializing Devices
 for i in range(len(devices)) :
     devices[i].battery(batteryThreshold)
-    print(macAddresses[i] + " version: " + str(devices[i].version))
+    print(macAddresses[i] + " version: " + str(devices[i].version()))
     devices[i].start(samplingRate, acqChannels)
 
 # Sampling for baseline
