@@ -1,5 +1,7 @@
 # BITalinoDataCollection
 
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 This script connects to a BITalino device via Bluetooth, get readings for 1 min for baseline, then plays a video and records the readings during the video.
 
 *Note that this script currently can only be run on Linux systems*
