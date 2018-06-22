@@ -36,7 +36,7 @@ if platform.system() != 'Linux':
 #    rows, columns = os.popen('stty size', 'r').read().split()
 
 macAddresses = ["20:16:12:21:98:56", "20:16:12:22:01:29"]
-samplingRate = 1000
+samplingRate = 100
 acqChannels = [0,1,2,3,4,5]
 nSamples = 100
 
@@ -71,7 +71,4 @@ for i in range(len(devices)) :
 for p in processes:
     p.start()
 
-# Exit the completed processes
-for p in processes:
-    p.join()
 
