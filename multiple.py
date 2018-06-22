@@ -35,8 +35,10 @@ if platform.system() != 'Linux':
 #    clearCmd = "clear"
 #    rows, columns = os.popen('stty size', 'r').read().split()
 
-
 macAddresses = ["20:16:12:21:98:56", "20:16:12:22:01:29"]
+samplingRate = 1000
+acqChannels = [0,1,2,3,4,5]
+nSamples = 100
 
 # Setting other attributes
 batteryThreshold = 30
