@@ -61,7 +61,7 @@ print("The data collected will be stored in PyBitSignals_<MAC Address>_<date>_<t
 outputFiles = []
 processes = []
 # Initialize output files, setup processes
-for(i in range(len(devices))):
+for i in range(len(devices)) :
     filename = "PyBitSignals_" + re.sub(':', '', macAddress) + "_" + time.strftime("%Y-%m-%d_%H-%M-%S") + ".txt"
     outputFile = dc.initOutput(filename, macAddresses[i], acqChannels, samplingRate)
     outputFiles.append(outputFile)
