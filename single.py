@@ -1,6 +1,7 @@
 import platform
 import sys
 
+import subprocess
 import re
 import time
 
@@ -139,7 +140,7 @@ print("Play video and record data...")
 try:
     vidProc = subprocess.Popen(["mplayer","-fs", vidPath])
     while(vidProc.poll() == None):
-        sample = device.read(nSamples)
+        sample = device.read(100)
         outputFile.write(matToString(sample))
 except OSError:
     print("mplayer not found")
@@ -154,3 +155,6 @@ except OSError:
 print("Video finished.\n")
 print("Data has been saved in " + filename)
 print("Done")
+
+device.stop()
+device.close()

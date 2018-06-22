@@ -56,13 +56,12 @@ def writeOutTimed(file, device, acqChannels, samplingRate, t):
     Collects data from the BITalino device for the given time duration and writes to the designated output file
     Must start the device before calling this
     """
-    # Sample for baseline: 1 min
     start = time.time()
     end = time.time()
-    print("Sampling for " + t + " seconds...")
+    print("Sampling for " + str(t) + " seconds...")
     while(end - start) < t:
         sample = device.read(100)
-        outputFile.write(matToString(sample))
+        file.write(matToString(sample))
         end = time.time()
     print("Finished.")
 
