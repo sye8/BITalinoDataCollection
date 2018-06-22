@@ -43,13 +43,13 @@ batteryThreshold = 30
 
 # Connecting to the BITalino devices
 devices = []
-for(addr in macAddresses):
+for addr in macAddresses :
     print("Connecting to " + addr)
     devices.append(BITalino(addr))
     print(addr + " connected.")
 
 # Initializing Devices
-for(i in range(len(devices))):
+for i in range(len(devices)) :
     devices[i].battery(batteryThreshold)
     print(macAddresses[i] + " version: " + str(devices[i].version))
     devices[i].start(samplingRate, acqChannels)
