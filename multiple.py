@@ -60,7 +60,19 @@ for i in range(len(devices)) :
 print("The data collected will be stored in PyBitSignals_<MAC Address>_<date>_<time>.txt")
 print("Sampling for baseline...")
 outputFiles = []
+processes = []
+# Initialize output files, setup processes
 for(i in range(len(devices))):
     filename = "PyBitSignals_" + re.sub(':', '', macAddress) + "_" + time.strftime("%Y-%m-%d_%H-%M-%S") + ".txt"
-    outputFiles.append(dc.initOutput(filename, macAddresses[i], acqChannels, samplingRate))
+    outputFile = dc.initOutput(filename, macAddresses[i], acqChannels, samplingRate)
+    outputFiles.append(outputFile)
+    processes.append(multiprocessing.Process(target=dc.writeOutTimed, args=(outputFile, devices[i], acqChannels, samplingRate, 60)))
+
+# Start baseline sampling for each device
+for p in processes:
+    p.start()
+
+# Exit the completed processes
+for p in processes:
+    p.join()
 
