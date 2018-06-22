@@ -8,12 +8,8 @@ Author
 Sifan Ye
 """
 
-import os
-import platform
 import sys
-import subprocess
 
-import re
 import time
 
 import numpy as np
@@ -26,16 +22,16 @@ else:
 
 
 def initOutput(filename, macAddress, acqChannels, samplingRate):
-	"""
-	:param filename: The path to the output file
-	:param macAddress: The MAC Address of the BITalino device, to be written in the header
-	:param acqChannels: The monitored analog channels, to be written in the header
-	:param samplingRate: The sampling rate in Hz, to be written in the header
-	Creates an output file and writes the header
-	"""
+    """
+    :param filename: The path to the output file
+    :param macAddress: The MAC Address of the BITalino device, to be written in the header
+    :param acqChannels: The monitored analog channels, to be written in the header
+    :param samplingRate: The sampling rate in Hz, to be written in the header
+    Creates an output file and writes the header
+    """
   	# Create Output file
     file = open(filename, "w")
-
+    
     # Write a header to output file
     file.write("# This data is acquired using the BITalino Python API.\n")
     file.write("# The script that recorded this data is written by Sifan Ye.\n")
@@ -46,21 +42,21 @@ def initOutput(filename, macAddress, acqChannels, samplingRate):
     file.write("# Monitored Channels: " + str(acqChannels) + "\n")
     file.write("# Sampling Rate: " + str(samplingRate) + "\n")
     file.write("# End of header\n")
-
+    
     return file
 
 
 def writeOutTimed(file, device, acqChannels, samplingRate, t):
-	"""
-	:param filename: The output file object
-	:param device: The BITalino device collecting bio-metrics data
-	:param acqChannels: The monitored analog channels,in a list
-	:param samplingRate: The sampling rate in Hz
-	:param time: The sampling time, in seconds
-	Collects data from the BITalino device for the given time duration and writes to the designated output file
-	Must start the device before calling this
-	"""
-	 # Sample for baseline: 1 min
+    """
+    :param filename: The output file object
+    :param device: The BITalino device collecting bio-metrics data
+    :param acqChannels: The monitored analog channels,in a list
+    :param samplingRate: The sampling rate in Hz
+    :param time: The sampling time, in seconds
+    Collects data from the BITalino device for the given time duration and writes to the designated output file
+    Must start the device before calling this
+    """
+    # Sample for baseline: 1 min
     start = time.time()
     end = time.time()
     print("Sampling for " + t + " seconds...")

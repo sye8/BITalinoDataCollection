@@ -1,3 +1,9 @@
+import platform
+import sys
+
+import re
+import time
+
 import numpy as np
 
 if sys.version_info[0] < 3:
@@ -7,6 +13,7 @@ else:
     from bitalino3X import BITalino
 
 import dataCollection as dc
+
 
 
 if platform.system() != 'Linux':
@@ -38,7 +45,7 @@ if len(sys.argv) == 1:
     print("Please type the path to the video here:")
     vidPath = sys.stdin.readline().rstrip()
 elif any(s in ["--help", "-h"] for s in sys.argv):
-	print("\nThis script connects to a BITalino device via Bluetooth, get readings for 1 min for baseline, then plays a video and records the readings during the video.")
+    print("\nThis script connects to a BITalino device via Bluetooth, get readings for 1 min for baseline, then plays a video and records the readings during the video.")
     print("\nRun without flags to use default settings.\n")
     print("Flags:\n")
     print("\t-macAddress [MAC Address of the device]")
