@@ -42,6 +42,8 @@ sudo pip3 install numpy pyserial pybluez bitalino
 
 ## Flags
 
+### single.py - To record data with 1 BITalino device:
+
 Run without flags to use default settings.
 
 * `-macAddress [MAC Address of the device]`
