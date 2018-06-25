@@ -77,7 +77,7 @@ for p in processes:
 
 # Open Video and record data
 print("Play video and record data...")
-seconds = dc.videoLength(vidPath)
+seconds = dc.videoLength("test.mp4")
 processes = []
 for i in range(len(devices)):
     processes.append(multiprocessing.Process(target=dc.writeOutTimed, args=(outputFiles[i], devices[i], acqChannels, samplingRate, seconds)))
@@ -86,6 +86,8 @@ try:
     vidStartTime = time.time()
     for p in processes:
         p.start()
+    for p in processes:
+        p.join()
 except OSError:
     print("mplayer not found")
     print("Would you like to install mplayer? [Y/N]")

@@ -4,7 +4,6 @@ import sys
 import subprocess
 import re
 import time
-import datetime
 
 import numpy as np
 
