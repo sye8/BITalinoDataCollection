@@ -78,11 +78,11 @@ for p in processes:
 # Open Video and record data
 print("Play video and record data...")
 try:
-    vidProc = subprocess.Popen(["mplayer","-fs", "test.mp4"])
-    vidStartTime = time.time()
     processes = []
     for i in range(len(devices)):
-        processes.append(multiprocessing.Process(target=dc.writeOut, args=(outputFile, devices[i], acqChannels, samplingRate)))
+        processes.append(multiprocessing.Process(target=dc.writeOut, args=(outputFiles[i], devices[i], acqChannels, samplingRate)))
+    vidProc = subprocess.Popen(["mplayer","-fs", "test.mp4"])
+    vidStartTime = time.time()
     while(vidProc.poll() == None):
         for p in processes:
             p.start()
@@ -102,5 +102,6 @@ print("Video finished.\n")
 print("Video started at " + str(vidStartTime) + " or in human language: " + str(time.ctime(vidStartTime)))
 print("Done")
 
-device.stop()
-device.close()
+for d in devices:
+    d.stop()
+    d.close()
