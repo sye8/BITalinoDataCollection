@@ -136,11 +136,7 @@ outputFile = dc.initOutput(filename, macAddress, acqChannels, samplingRate)
 dc.writeOutTimed(outputFile, device, acqChannels, samplingRate, 60)
 
 # Open Video and record data
-print("Get video length")
-ffprobe = subprocess.Popen(["ffprobe", vidPath],stdout = subprocess.PIPE, stderr = subprocess.STDOUT)
-result = str([x for x in ffprobe.stdout.readlines() if "Duration" in x]).split(',')[0].split()
-vidDuration = time.strptime(result[2], "%H:%M:%S.%f")
-seconds = datetime.timedelta(hours=vidDuration.tm_hour,minutes=vidDuration.tm_min,seconds=vidDuration.tm_sec).total_seconds()+1
+seconds = dc.videoLength(vidPath)
 print("Play video and record data...")
 try:
     vidProc = subprocess.Popen(["mplayer","-fs", vidPath])
