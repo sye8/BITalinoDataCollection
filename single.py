@@ -4,6 +4,7 @@ import sys
 import subprocess
 import re
 import time
+import datetime
 
 import numpy as np
 
@@ -136,8 +137,11 @@ dc.writeOutTimed(outputFile, device, acqChannels, samplingRate, 60)
 
 # Open Video and record data
 print("Get video length")
-result = subprocess.Popen(["ffprobe", vidPath],stdout = subprocess.PIPE, stderr = subprocess.STDOUT)
-print("Video Duration: " + str([x for x in result.stdout.readlines() if "Duration" in x]))
+ffprobe = subprocess.Popen(["ffprobe", vidPath],stdout = subprocess.PIPE, stderr = subprocess.STDOUT)
+result = str([x for x in ffprobe.stdout.readlines() if "Duration" in x]).split(',')[0].split()
+vidDuration = time.strptime(result[2], "%H:%M:%S.%f")
+seconds = datetime.timedelta(hours=vidDuration.tm_hour,minutes=vidDuration.tm_min,seconds=vidDuration.tm_sec).total_seconds()+1
+print("Video Duration: " + str(seconds))
 print("Play video and record data...")
 try:
     vidProc = subprocess.Popen(["mplayer","-fs", vidPath])
@@ -159,6 +163,7 @@ vidEndTime = time.time()
 print("Video finished.\n")
 print("Video started at " + str(vidStartTime) + " or in human language: " + str(time.ctime(vidStartTime)))
 print("Video ended at " + str(vidEndTime) + " or in human language: " + str(time.ctime(vidEndTime)))
+print("Video duration: " + str(vidEndTime - vidStartTime))
 print("Data has been saved in " + filename)
 print("Done")
 
