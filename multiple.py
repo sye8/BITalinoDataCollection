@@ -78,7 +78,7 @@ for p in processes:
 # Open Video and record data
 print("Play video and record data...")
 try:
-    vidProc = subprocess.Popen(["mplayer","-fs", vidPath])
+    vidProc = subprocess.Popen(["mplayer","-fs", "test.mp4"])
     vidStartTime = time.time()
     processes = []
     for i in range(len(devices)):
