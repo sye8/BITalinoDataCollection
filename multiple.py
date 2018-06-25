@@ -86,7 +86,7 @@ try:
     for p in processes:
         p.start()
     while(vidProc.poll() == None):
-        sleep(0.01)
+        time.sleep(0.01)
     for p in processes:
         p.join()
 except OSError:
