@@ -144,12 +144,12 @@ for p in processes:
 
 # Open Video and record data
 print("Play video and record data...")
-seconds = dc.videoLength("test.mp4")
+seconds = dc.videoLength(vidPath)
 processes = []
 for i in range(len(devices)):
     processes.append(multiprocessing.Process(target=dc.writeOutTimed, args=(outputFiles[i], devices[i], acqChannels, samplingRate, seconds)))
 try:
-    vidProc = subprocess.Popen(["mplayer","-fs", "test.mp4"])
+    vidProc = subprocess.Popen(["mplayer","-fs", vidPath])
     vidStartTime = time.time()
     for p in processes:
         p.start()
