@@ -78,6 +78,8 @@ Run without flags to use default settings.
     
 ### multiple.py - To record data with several BITalino devices:
 
+Run without flags to use default settings.
+
 * `--mac-addresses [MAC Addresses of the devices, in a comma seperated list]`
 
     If '--mac-addresses' is not set, default MAC Address 20:16:12:21:98:56,20:16:12:22:01:29 will be used.
