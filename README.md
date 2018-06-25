@@ -52,7 +52,7 @@ Run without flags to use default settings.
 
 * `--channels [Comma seperated list of integers from 0 - 5, representing channels]`
 
-    If '--channels' is not set, all channels [0,1,2,3,4,5] will be monitored
+    If '--channels' is not set, all channels 0,1,2,3,4,5 will be monitored
 
     Example: 0,2,3 to monitor channels A1, A3, A4
 
@@ -71,6 +71,32 @@ Run without flags to use default settings.
    Sets the output filename
 	
    If '--output' flag is not set, default output filename 'PyBitSignals_(MAC Address)\_(date)_(time)' will be used
+
+* `--help (-h)`
+
+    Show instructions.
+    
+### multiple.py - To record data with several BITalino devices:
+
+* `--mac-addresses [MAC Addresses of the devices, in a comma seperated list]`
+
+    If '--mac-addresses' is not set, default MAC Address 20:16:12:21:98:56,20:16:12:22:01:29 will be used.
+
+* `--channels [Comma seperated list of integers from 0 - 5, representing channels]`
+
+    If '--channels' is not set, all channels 0,1,2,3,4,5 will be monitored
+
+    Example: 0,2,3 to monitor channels A1, A3, A4
+
+* `--sampling-rate [Sampling Rate in Hz]`
+
+    If '--sampling-rate' is not set, default sampling rate of 100 Hz will be used.
+ 
+    Sampling Rate can be 1, 10, 100 or 1000 Hz.
+
+* `--video [Path to video file]`
+
+    If '--video' flag is not set, the script will ask you for video during execution
 
 * `--help (-h)`
 
