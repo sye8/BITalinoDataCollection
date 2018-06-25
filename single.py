@@ -49,16 +49,16 @@ elif any(s in ["--help", "-h"] for s in sys.argv):
     print("\nThis script connects to a BITalino device via Bluetooth, get readings for 1 min for baseline, then plays a video and records the readings during the video.")
     print("\nRun without flags to use default settings.\n")
     print("Flags:\n")
-    print("\t-macAddress [MAC Address of the device]")
-    print("\t\t If '-macAddress' is not set, default MAC Address " + defaultMACAddress + " will be used.\n")
-    print("\t-channels [Comma seperated list of integers from 0 - 5, representing channels]")
-    print("\t\t If '-channels' is not set, all channels [0,1,2,3,4,5] will be monitored")
+    print("\t--mac-address [MAC Address of the device]")
+    print("\t\t If '--mac-address' is not set, default MAC Address " + defaultMACAddress + " will be used.\n")
+    print("\t--channels [Comma seperated list of integers from 0 - 5, representing channels]")
+    print("\t\t If '--channels' is not set, all channels [0,1,2,3,4,5] will be monitored")
     print("\t\t Example: 0,2,3 to monitor channels A1, A3, A4\n")
-    print("\t-samplingRate [Sampling Rate in Hz]")
-    print("\t\tIf '-samplingRate' is not set, default sampling rate of 100 Hz will be used.")
+    print("\t--sampling-rate [Sampling Rate in Hz]")
+    print("\t\tIf '--sampling-rate' is not set, default sampling rate of 100 Hz will be used.")
     print("\t\tSampling Rate can be 1, 10, 100 or 100 Hz.\n")
-    print("\t-video [Path to video file]")
-    print("\t\tIf '-video' flag is not set, the script will ask you for video during execution\n")
+    print("\t--video [Path to video file]")
+    print("\t\tIf '--video' flag is not set, the script will ask you for video during execution\n")
     print("\t--output (-o)")
     print("\t\tSets the output filename")
     print("\t\tIf '--output' flag is not set, default output filename 'PyBitSignals_<MAC Address>_<date>_<time>' will be used\n")
@@ -66,31 +66,31 @@ elif any(s in ["--help", "-h"] for s in sys.argv):
     print("\t\tShow this screen.\n")
     exit()
 else:
-    # -macAddress flag
+    # --mac-address flag
     try:
-        i = sys.argv.index("-macAddress")
+        i = sys.argv.index("--mac-address")
         macAddress = sys.argv[i+1]
     except:
         macAddress = defaultMACAddress
         print("No MAC Address set, using default MAC Address: " + macAddress)
-    # -channels flag
+    # --channels flag
     try:
-        i = sys.argv.index("-channels")
+        i = sys.argv.index("--channels")
         channels = sys.argv[i+1]
         acqChannels = map(int, channels.split(','))
     except:
         acqChannels = [0, 1, 2, 3, 4, 5]
         print("No channels set, monitoring all channels.")
-    # -samplingRate flag
+    # --sampling-rate flag
     try:
-        i = sys.argv.index("-samplingRate")
+        i = sys.argv.index("--sampling-rate")
         samplingRate = int(sys.argv[i+1])
     except:
         samplingRate = 100
         print("No sampling rate set, using default sampling rate of 100 Hz.")
-    # -video flag
+    # --video flag
     try:
-        i = sys.argv.index("-video")
+        i = sys.argv.index("--video")
         vidPath = sys.argv[i+1]
     except:
         print("Please type the path to the video here:")
@@ -135,6 +135,9 @@ outputFile = dc.initOutput(filename, macAddress, acqChannels, samplingRate)
 dc.writeOutTimed(outputFile, device, acqChannels, samplingRate, 60)
 
 # Open Video and record data
+print("Get video length")
+result = subprocess.Popen(["ffprobe", vidPath],stdout = subprocess.PIPE, stderr = subprocess.STDOUT)
+print("Video Duration: " + str([x for x in result.stdout.readlines() if "Duration" in x]))
 print("Play video and record data...")
 try:
     vidProc = subprocess.Popen(["mplayer","-fs", vidPath])
@@ -152,8 +155,10 @@ except OSError:
         subprocess.call(["sudo", "apt-get", "install", "mplayer"])
         print("Exiting...")
         exit()
+vidEndTime = time.time()
 print("Video finished.\n")
 print("Video started at " + str(vidStartTime) + " or in human language: " + str(time.ctime(vidStartTime)))
+print("Video ended at " + str(vidEndTime) + " or in human language: " + str(time.ctime(vidEndTime)))
 print("Data has been saved in " + filename)
 print("Done")
 
