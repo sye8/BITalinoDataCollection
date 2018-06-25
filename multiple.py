@@ -34,10 +34,78 @@ if platform.system() != 'Linux':
 #    clearCmd = "clear"
 #    rows, columns = os.popen('stty size', 'r').read().split()
 
-macAddresses = ["20:16:12:21:98:56", "20:16:12:22:01:29"]
-samplingRate = 100
-acqChannels = [0,1,2,3,4,5]
-nSamples = 100
+defaultMacAddresses = ["20:16:12:21:98:56", "20:16:12:22:01:29"]
+
+# Parsing Arguments
+if len(sys.argv) == 1:
+    print("Run with flag '--help' or '-h' for instructions.")
+    print("Now using default settings.\n")
+    macAddresses = defaultMACAddress
+    acqChannels = [0, 1, 2, 3, 4, 5]
+    samplingRate = 100
+    print("Please type the path to the video here:")
+    vidPath = sys.stdin.readline().rstrip()
+elif any(s in ["--help", "-h"] for s in sys.argv):
+    print("\nThis script connects to a BITalino device via Bluetooth, get readings for 1 min for baseline, then plays a video and records the readings during the video.")
+    print("\nRun without flags to use default settings.\n")
+    print("Flags:\n")
+    print("\t--mac-addresses [MAC Addresses of the devices, in a comma seperated list]")
+    print("\t\t If '--mac-addresses' is not set, default MAC Addresses " + str(defaultMACAddresses) + " will be used.\n")
+    print("\t--channels [Comma seperated list of integers from 0 - 5, representing channels]")
+    print("\t\t If '--channels' is not set, all channels [0,1,2,3,4,5] will be monitored")
+    print("\t\t Example: 0,2,3 to monitor channels A1, A3, A4\n")
+    print("\t--sampling-rate [Sampling Rate in Hz]")
+    print("\t\tIf '--sampling-rate' is not set, default sampling rate of 100 Hz will be used.")
+    print("\t\tSampling Rate can be 1, 10, 100 or 100 Hz.\n")
+    print("\t--video [Path to video file]")
+    print("\t\tIf '--video' flag is not set, the script will ask you for video during execution\n")
+    print("\t--output (-o)")
+    print("\t\tSets the output filename")
+    print("\t\tIf '--output' flag is not set, default output filename 'PyBitSignals_<MAC Address>_<date>_<time>' will be used\n")
+    print("\t--help (-h)")
+    print("\t\tShow this screen.\n")
+    exit()
+else:
+    # --mac-address flag
+    try:
+        i = sys.argv.index("--mac-address")
+        macAddresses = sys.argv[i+1].split(',')
+    except:
+        macAddresses = defaultMACAddresses
+        print("No MAC Address set, using default MAC Address: " + macAddress)
+    # --channels flag
+    try:
+        i = sys.argv.index("--channels")
+        channels = sys.argv[i+1]
+        acqChannels = map(int, channels.split(','))
+    except:
+        acqChannels = [0, 1, 2, 3, 4, 5]
+        print("No channels set, monitoring all channels.")
+    # --sampling-rate flag
+    try:
+        i = sys.argv.index("--sampling-rate")
+        samplingRate = int(sys.argv[i+1])
+    except:
+        samplingRate = 100
+        print("No sampling rate set, using default sampling rate of 100 Hz.")
+    # --video flag
+    try:
+        i = sys.argv.index("--video")
+        vidPath = sys.argv[i+1]
+    except:
+        print("Please type the path to the video here:")
+        vidPath = sys.stdin.readline().rstrip()
+    # --output flag
+    try:
+        i = sys.argv.index("--output")
+        filename = sys.argv[i+1]
+    except:
+        try:
+            i = sys.argv.index("-o")
+            filename = sys.argv[i+1]
+        except:
+            filename = "PyBitSignals_" + re.sub(':', '', macAddress) + "_" + time.strftime("%Y-%m-%d_%H-%M-%S") + ".txt"
+            print("Using default filename:\n" + filename)
 
 # Setting other attributes
 batteryThreshold = 30
