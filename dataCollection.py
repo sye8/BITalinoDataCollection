@@ -69,6 +69,19 @@ def writeOutTimed(file, device, acqChannels, samplingRate, t):
     print("Finished.")
 
 
+def writeOut(file, device, acqChannels, samplingRate):
+	"""
+	:param filename: The output file object
+    :param device: The BITalino device collecting bio-metrics data
+    :param acqChannels: The monitored analog channels,in a list
+    :param samplingRate: The sampling rate in Hz
+	Collects data from the BITalino device and writes to the designated output file
+    Must start the device before calling this
+	"""
+	sample = device.read(100)
+    outputFile.write(dc.matToString(sample))
+
+
 def matToString(matrix):
     """
     :param matrix: The matrix to be turned into string

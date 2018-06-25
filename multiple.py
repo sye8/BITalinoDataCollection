@@ -74,3 +74,33 @@ for p in processes:
 # Exit the completed processes
 for p in processes:
     p.join()
+
+# Open Video and record data
+print("Play video and record data...")
+try:
+    vidProc = subprocess.Popen(["mplayer","-fs", vidPath])
+    vidStartTime = time.time()
+    processes = []
+    for i in range(len(devices)):
+        processes.append(multiprocessing.Process(target=dc.writeOut, args=(outputFile, devices[i], acqChannels, samplingRate)))
+    while(vidProc.poll() == None):
+        for p in processes:
+            p.start()
+        for p in processes:
+            p.join()
+except OSError:
+    print("mplayer not found")
+    print("Would you like to install mplayer? [Y/N]")
+    option = sys.stdin.readline().rstrip()
+    if(option == "Y"):
+        # Install mplayer using apt-get
+        print("Installing mplayer using apt-get. Will require password for sudo")
+        subprocess.call(["sudo", "apt-get", "install", "mplayer"])
+        print("Exiting...")
+        exit()
+print("Video finished.\n")
+print("Video started at " + str(vidStartTime) + " or in human language: " + str(time.ctime(vidStartTime)))
+print("Done")
+
+device.stop()
+device.close()
