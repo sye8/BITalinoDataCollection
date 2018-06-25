@@ -46,25 +46,25 @@ sudo pip3 install numpy pyserial pybluez bitalino
 
 Run without flags to use default settings.
 
-* `-macAddress [MAC Address of the device]`
+* `--mac-address [MAC Address of the device]`
 
-    If '-macAddress' is not set, default MAC Address 20:16:12:21:98:56 will be used.
+    If '--mac-address' is not set, default MAC Address 20:16:12:21:98:56 will be used.
 
-* `-channels [Comma seperated list of integers from 0 - 5, representing channels]`
+* `--channels [Comma seperated list of integers from 0 - 5, representing channels]`
 
-    If '-channels' is not set, all channels [0,1,2,3,4,5] will be monitored
+    If '--channels' is not set, all channels [0,1,2,3,4,5] will be monitored
 
     Example: 0,2,3 to monitor channels A1, A3, A4
 
-* `-samplingRate [Sampling Rate in Hz]`
+* `--sampling-rate [Sampling Rate in Hz]`
 
-    If '-samplingRate' is not set, default sampling rate of 100 Hz will be used.
+    If '--sampling-rate' is not set, default sampling rate of 100 Hz will be used.
  
     Sampling Rate can be 1, 10, 100 or 1000 Hz.
 
-* `-video [Path to video file]`
+* `--video [Path to video file]`
 
-    If '-video' flag is not set, the script will ask you for video during execution
+    If '--video' flag is not set, the script will ask you for video during execution
     
 * `--output (-o)`
 
