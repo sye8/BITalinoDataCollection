@@ -79,8 +79,8 @@ def writeOut(file, device, acqChannels, samplingRate):
     Must start the device before calling this
     """
     sample = device.read(100)
-    outputFile.write(dc.matToString(sample))
-
+    file.write(dc.matToString(sample))
+    file.flush()
 
 def matToString(matrix):
     """

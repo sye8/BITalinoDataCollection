@@ -83,11 +83,12 @@ try:
         processes.append(multiprocessing.Process(target=dc.writeOut, args=(outputFiles[i], devices[i], acqChannels, samplingRate)))
     vidProc = subprocess.Popen(["mplayer","-fs", "test.mp4"])
     vidStartTime = time.time()
+    for p in processes:
+        p.start()
     while(vidProc.poll() == None):
-        for p in processes:
-            p.start()
-        for p in processes:
-            p.join()
+        sleep(0.01)
+    for p in processes:
+        p.join()
 except OSError:
     print("mplayer not found")
     print("Would you like to install mplayer? [Y/N]")
