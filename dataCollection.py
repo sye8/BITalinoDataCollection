@@ -100,7 +100,9 @@ def videoLength(filename):
     :param filename: The path to the video file
     Returns the length of the video in seconds, rounded up
     """
-    ffprobe = subprocess.Popen(["ffprobe", filename],stdout = subprocess.PIPE, stderr = subprocess.STDOUT)
-    result = str([x for x in ffprobe.stdout.readlines() if "Duration" in x]).split(',')[0].split()
-    vidDuration = time.strptime(result[2], "%H:%M:%S.%f")
+    if sys.version_info[0] < 3:
+        out = subprocess.check_output("ffmpeg -i " + filename + " 2>&1 | grep 'Duration'", shell=True).rstrip()
+    else:
+        out = subprocess.getoutput("ffmpeg -i " + filename + " 2>&1 | grep 'Duration'")
+    vidDuration = time.strptime(out.split()[1].replace(',',''), "%H:%M:%S.%f")
     return datetime.timedelta(hours=vidDuration.tm_hour,minutes=vidDuration.tm_min,seconds=vidDuration.tm_sec).total_seconds()+1
