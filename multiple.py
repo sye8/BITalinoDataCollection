@@ -74,7 +74,7 @@ else:
     try:
         i = sys.argv.index("--channels")
         channels = sys.argv[i+1]
-        acqChannels = map(int, channels.split(','))
+        acqChannels = list(map(int, channels.split(',')))
     except:
         acqChannels = [0, 1, 2, 3, 4, 5]
         print("No channels set, monitoring all channels.")
