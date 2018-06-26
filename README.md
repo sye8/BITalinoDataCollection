@@ -84,7 +84,7 @@ Run without flags to use default settings.
 
 * `--mac-addresses [MAC Addresses of the devices, in a comma seperated list]`
 
-    If '--mac-addresses' is not set, default MAC Address 20:16:12:21:98:56,20:16:12:22:01:29 will be used.
+    If '--mac-addresses' is not set, default MAC Addresses 20:16:12:21:98:56,20:16:12:22:01:29 will be used.
 
 * `--channels [Comma seperated list of integers from 0 - 5, representing channels]`
 
