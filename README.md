@@ -40,6 +40,8 @@ sudo pip3 install numpy pyserial pybluez bitalino
 
 **Note here we are not cloning the official BITalino git repo since we are using their old API for Python 3 support, which I have included in this repo. (Thanks to [Gautam Sawala](https://github.com/gautamsawala) for this suggestion)**
 
+**Note that using BITalino3X API will lose half of the data points!**
+
 ## Arguments
 
 ### single.py - To record data with 1 BITalino device:
