@@ -38,9 +38,7 @@ sudo apt-get install python3 python3-dev python3-pip bluez libbluetooth-dev ffmp
 sudo pip3 install numpy pyserial pybluez bitalino
 ```
 
-**Note here we are not cloning the official BITalino git repo since we are using their old API for Python 3 support, which I have included in this repo. (Thanks to [Gautam Sawala](https://github.com/gautamsawala) for this suggestion)**
-
-**Note that BITalino3X is no longer maintained. Use Python 2 for best results**
+**Note that the official BITalino git repo is no longer maintaining BITalino3X, which I have included in this repo. (Thanks to [Gautam Sawala](https://github.com/gautamsawala) for this suggestion) Use Python 2 for best results**
 
 ## Arguments
 
