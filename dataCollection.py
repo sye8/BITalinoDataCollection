@@ -65,7 +65,7 @@ def writeOutTimed(file, device, acqChannels, samplingRate, t):
     end = time.time()
     print("Sampling for " + str(t) + " seconds...")
     while(end - start) < t:
-        sample = device.read(100)
+        sample = device.read(50)
         file.write(matToString(sample))
         end = time.time()
     file.flush()
